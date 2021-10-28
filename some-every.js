@@ -50,20 +50,27 @@ Examples:
 */
 
 function hasNoDuplicates(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let num = arr[i];
-        // console.log(arr);
-        // console.log(num);
-        let copy = arr;
-        // console.log(copy[i])
-        // console.log(copy);
-        copy.splice(i, 1);
-        console.log(copy)
-        return copy.some(function(el) {
-            console.log(el === arr[i])
-            return el === arr[i];
-        })
-    }
+    return arr.every(function(el){
+        return arr.indexOf(el) === arr.lastIndexOf(el); // this didn't occur to me till i looked at the solution
+    })
+    // for (let i = 0; i < arr.length; i++) {
+    //     let num = arr[i];
+    //     // console.log(arr);
+    //     // console.log(num);
+    //     let copy = arr;
+    //     // console.log(copy[i])
+    //     // console.log(copy);
+    //     copy.splice(i, 1);
+    //     console.log(copy);
+    //     copy.some(function(el) {
+    //         console.log(el === arr[i])
+    //         return el === arr[i];
+    //     })
+    //     return copy.some(function(el) {
+    //         console.log(el === arr[i])
+    //         return el === arr[i];
+    //     })
+    // }
 }
 
 /*
@@ -81,7 +88,11 @@ Examples:
     hasCertainKey(arr,'isCatOwner') // false
 */
 
-function hasCertainKey(arr, key) {}
+function hasCertainKey(arr, key) {
+    return arr.every(function(el, i) {
+        return el[key];
+    })
+}
 
 /*
 Write a function called hasCertainValue which accepts an array of objects and a key, and a value, and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
@@ -99,4 +110,8 @@ Examples:
     
 */
 
-function hasCertainValue(arr, key, searchValue) {}
+function hasCertainValue(arr, key, searchValue) {
+    return arr.every(function(el, i){
+        return el[key] === searchValue;
+    })
+}
